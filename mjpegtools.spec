@@ -1,7 +1,7 @@
 %define name	mjpegtools
 %define version	1.9.0
 %define prerel rc2
-%define rel 0.%prerel.2
+%define rel 0.%prerel.3
 %define release %mkrel %rel
 %define api	1.9
 %define major 0
@@ -17,10 +17,10 @@ Summary:	Tools for recording, editing, playing back and mpeg-encoding video unde
 License:	GPL
 Url:		http://mjpeg.sourceforge.net
 Group:		Video
-Source:		http://prdownloads.sourceforge.net/mjpeg/%{filename}.tar.bz2
-Patch0:		mjpegtools-1.6.1.93-add-info-dir.patch
-Patch2:         mjpegtools-1.9.0rc1-x86_64.patch
-Patch3:		mjpegtools-1.6.1.90-libtool.patch
+Source: 	http://prdownloads.sourceforge.net/mjpeg/%{filename}.tar.bz2
+Patch0: 	mjpegtools-1.6.1.93-add-info-dir.patch
+Patch2: 	mjpegtools-1.9.0rc1-x86_64.patch
+Patch3: 	mjpegtools-1.6.1.90-libtool.patch
 Requires:	%{libname} = %{version}
 BuildRequires:  autoconf2.5
 BuildRequires:  gtk+2-devel
