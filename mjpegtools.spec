@@ -18,7 +18,6 @@ License:	GPL
 Url:		http://mjpeg.sourceforge.net
 Group:		Video
 Source: 	http://prdownloads.sourceforge.net/mjpeg/%{filename}.tar.bz2
-Patch0: 	mjpegtools-1.6.1.93-add-info-dir.patch
 Patch2: 	mjpegtools-1.9.0rc1-x86_64.patch
 Patch3: 	mjpegtools-1.6.1.90-libtool.patch
 Requires:	%{libname} = %{version}
@@ -62,7 +61,6 @@ applications which will use %{name}.
 
 %prep
 %setup -q -n %filename
-%patch0 -p1 -b .infodir
 %patch2 -p1
 %patch3 -p1 -b .libtool
 autoconf
