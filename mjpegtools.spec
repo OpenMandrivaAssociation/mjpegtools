@@ -64,7 +64,7 @@ applications which will use %{name}.
 %patch2 -p1
 %patch3 -p1 -b .libtool
 autoconf
-# toolame isn't in Mandrake, mp2enc is, so use that
+# toolame isn't in Mandriva, mp2enc is, so use that
 perl -p -i -e 's/\-\"toolame\"/\-\"mp2enc\"/g' scripts/lav2mpeg
 
 %if %mdkversion <= 910
