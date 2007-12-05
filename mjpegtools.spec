@@ -1,7 +1,7 @@
 %define name	mjpegtools
 %define version	1.9.0
-%define prerel rc2
-%define rel 0.%prerel.4
+%define prerel rc3
+%define rel 0.%prerel.1
 %define release %mkrel %rel
 %define api	1.9
 %define major 0
@@ -17,7 +17,7 @@ Summary:	Tools for recording, editing, playing back and mpeg-encoding video unde
 License:	GPL
 Url:		http://mjpeg.sourceforge.net
 Group:		Video
-Source: 	http://prdownloads.sourceforge.net/mjpeg/%{filename}.tar.bz2
+Source: 	http://prdownloads.sourceforge.net/mjpeg/%{filename}.tar.gz
 Patch2: 	mjpegtools-1.9.0rc1-x86_64.patch
 Patch3: 	mjpegtools-1.6.1.90-libtool.patch
 Requires:	%{libname} = %{version}
@@ -79,7 +79,6 @@ cat lavtools/liblavrec.c.orig >> lavtools/liblavrec.c
 cat lavtools/liblavplay.c.orig >> lavtools/liblavplay.c
 cat lavtools/testrec.c.orig >> lavtools/testrec.c
 %endif
-make distclean
 
 %build
 export CPPFLAGS="-fpermissive"
