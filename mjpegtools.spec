@@ -28,7 +28,6 @@ BuildRequires:  libSDL_gfx-devel
 BuildRequires:  libxxf86dga-devel
 BuildRequires:  libquicktime-devel nasm
 Buildrequires:	libdv-devel >= 0.99
-BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
 The MJPEG-tools are a basic set of utilities for recording, editing, 
