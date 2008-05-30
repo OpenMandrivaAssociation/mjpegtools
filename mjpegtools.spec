@@ -69,21 +69,9 @@ autoconf
 # toolame isn't in Mandriva, mp2enc is, so use that
 perl -p -i -e 's/\-\"toolame\"/\-\"mp2enc\"/g' scripts/lav2mpeg
 
-%if %mdkversion <= 910
-#quick hack to fix struct statfs problem
-mv lavtools/liblavrec.c lavtools/liblavrec.c.orig
-mv lavtools/liblavplay.c lavtools/liblavplay.c.orig
-mv lavtools/testrec.c lavtools/testrec.c.orig
-echo "#define _I386_STATFS_H" > lavtools/liblavrec.c
-echo "#define _I386_STATFS_H" > lavtools/liblavplay.c
-echo "#define _I386_STATFS_H" > lavtools/testrec.c
-cat lavtools/liblavrec.c.orig >> lavtools/liblavrec.c
-cat lavtools/liblavplay.c.orig >> lavtools/liblavplay.c
-cat lavtools/testrec.c.orig >> lavtools/testrec.c
-%endif
-
 %build
-export CPPFLAGS="-fpermissive"
+export CPPFLAGS="%{optflags} -fpermissive -pthread"
+export CFLAGS="%{optflags} -fpermissive -pthread"
 # build i686/mmx dynamic library
 %ifarch %{ix86}
 mkdir build-i686
