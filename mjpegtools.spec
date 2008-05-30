@@ -10,6 +10,7 @@
 #fixed2
 %{?!mkrel:%define mkrel(c:) %{-c: 0.%{-c*}.}%{!?_with_unstable:%(perl -e '$_="%{1}";m/(.\*\\D\+)?(\\d+)$/;$rel=${2}-1;re;print "$1$rel";').%{?subrel:%subrel}%{!?subrel:1}.%{?distversion:%distversion}%{?!distversion:%(echo $[%{mdkversion}/10])}}%{?_with_unstable:%{1}}%{?distsuffix:%distsuffix}%{?!distsuffix:mdk}}
 
+%define _disable_ld_no_undefined 1
 Name:		%{name}
 Version:	%{version}
 Release:	%{release}
@@ -29,6 +30,7 @@ BuildRequires:  libSDL_gfx-devel
 BuildRequires:  libxxf86dga-devel
 BuildRequires:  libquicktime-devel nasm
 Buildrequires:	libdv-devel >= 0.99
+BuildRequires:	pulseaudio-devel
 BuildRoot:      %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %description
