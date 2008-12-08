@@ -1,14 +1,12 @@
 %define name	mjpegtools
 %define version	1.9.0
-%define prerel rc3
-%define rel 0.%prerel.3
+%define prerel rc4
+%define rel 0.%prerel.1
 %define release %mkrel %rel
 %define api	1.9
 %define major 0
 %define libname %mklibname %name%{api}_ %major
 %define filename %name-%version%prerel
-#fixed2
-%{?!mkrel:%define mkrel(c:) %{-c: 0.%{-c*}.}%{!?_with_unstable:%(perl -e '$_="%{1}";m/(.\*\\D\+)?(\\d+)$/;$rel=${2}-1;re;print "$1$rel";').%{?subrel:%subrel}%{!?subrel:1}.%{?distversion:%distversion}%{?!distversion:%(echo $[%{mdkversion}/10])}}%{?_with_unstable:%{1}}%{?distsuffix:%distsuffix}%{?!distsuffix:mdk}}
 
 %define _disable_ld_no_undefined 1
 Name:		%{name}
@@ -21,7 +19,6 @@ Group:		Video
 Source: 	http://prdownloads.sourceforge.net/mjpeg/%{filename}.tar.gz
 Patch2: 	mjpegtools-1.9.0rc1-x86_64.patch
 Patch3: 	mjpegtools-1.6.1.90-libtool.patch
-Patch4:		mjpegtools-1.9.0_rc3-gcc43.patch
 Requires:	%{libname} = %{version}
 BuildRequires:  autoconf2.5
 BuildRequires:  gtk+2-devel
@@ -66,8 +63,8 @@ applications which will use %{name}.
 %setup -q -n %filename
 %patch2 -p1
 %patch3 -p1 -b .libtool
-%patch4 -p1
-autoconf
+autoreconf
+make distclean
 # toolame isn't in Mandriva, mp2enc is, so use that
 perl -p -i -e 's/\-\"toolame\"/\-\"mp2enc\"/g' scripts/lav2mpeg
 
