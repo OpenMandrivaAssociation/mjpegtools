@@ -1,12 +1,11 @@
 %define name	mjpegtools
 %define version	1.9.0
-%define prerel rc4
-%define rel 0.%prerel.1
+%define rel 1
 %define release %mkrel %rel
 %define api	1.9
 %define major 0
 %define libname %mklibname %name%{api}_ %major
-%define filename %name-%version%prerel
+%define filename %name-%version
 
 %define _disable_ld_no_undefined 1
 Name:		%{name}
@@ -17,8 +16,8 @@ License:	GPL
 Url:		http://mjpeg.sourceforge.net
 Group:		Video
 Source: 	http://prdownloads.sourceforge.net/mjpeg/%{filename}.tar.gz
+Patch:		mjpegtools-1.9.0-format-strings.patch
 Patch2: 	mjpegtools-1.9.0rc1-x86_64.patch
-Patch3: 	mjpegtools-1.6.1.90-libtool.patch
 Requires:	%{libname} = %{version}
 BuildRequires:  autoconf2.5
 BuildRequires:  gtk+2-devel
@@ -61,10 +60,10 @@ applications which will use %{name}.
 
 %prep
 %setup -q -n %filename
+%patch -p1
 %patch2 -p1
-%patch3 -p1 -b .libtool
+libtoolize --copy --force
 autoreconf
-make distclean
 # toolame isn't in Mandriva, mp2enc is, so use that
 perl -p -i -e 's/\-\"toolame\"/\-\"mp2enc\"/g' scripts/lav2mpeg
 
@@ -75,8 +74,8 @@ export CFLAGS="%{optflags} -fpermissive -pthread"
 %ifarch %{ix86}
 mkdir build-i686
 pushd build-i686
-CONFIGURE_TOP=.. ../configure --enable-cmov-extension --enable-simd-accel \
-  --libdir=%_libdir --with-dv-yv12
+CONFIGURE_TOP=.. ../configure --enable-simd-accel \
+  --libdir=%_libdir
 make
 popd
 %endif
@@ -88,8 +87,8 @@ mkdir build-%{_target_cpu}
 %endif
 
 pushd build-%{_target_cpu}
-CONFIGURE_TOP=.. %configure2_5x --disable-cmov-extension --disable-simd-accel \
-  --libdir=%_libdir --with-dv-yv12
+CONFIGURE_TOP=.. %configure2_5x --disable-simd-accel \
+  --libdir=%_libdir
 make
 popd
 
