@@ -1,13 +1,14 @@
+%define _disable_ld_no_undefined 1
+
 %define name	mjpegtools
 %define version	1.9.0
-%define rel 5
+%define rel 6
 %define release %mkrel %rel
 %define api	1.9
 %define major 0
 %define libname %mklibname %name%{api}_ %major
 %define filename %name-%version
 
-%define _disable_ld_no_undefined 1
 Name:		%{name}
 Version:	%{version}
 Release:	%{release}
@@ -16,8 +17,9 @@ License:	GPL
 Url:		http://mjpeg.sourceforge.net
 Group:		Video
 Source: 	http://prdownloads.sourceforge.net/mjpeg/%{filename}.tar.gz
-Patch:		mjpegtools-1.9.0-format-strings.patch
-Patch2: 	mjpegtools-1.9.0rc1-x86_64.patch
+Patch0:		mjpegtools-1.9.0-format-strings.patch
+Patch1: 	mjpegtools-1.9.0rc1-x86_64.patch
+Patch2: 	mjpegtools-1.9.0-jpeg-7.patch
 Requires:	%{libname} = %{version}
 BuildRequires:  autoconf2.5
 BuildRequires:  gtk+2-devel
@@ -60,8 +62,10 @@ applications which will use %{name}.
 
 %prep
 %setup -q -n %filename
-%patch -p1
-%patch2 -p1
+%patch0 -p1
+%patch1 -p1
+%patch2 -p0
+
 libtoolize --copy --force
 autoreconf
 # toolame isn't in Mandriva, mp2enc is, so use that
