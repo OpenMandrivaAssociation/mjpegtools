@@ -2,7 +2,7 @@
 
 %define name	mjpegtools
 %define version	1.9.0
-%define rel 6
+%define rel 7
 %define release %mkrel %rel
 %define api	1.9
 %define major 0
@@ -40,7 +40,7 @@ hardware. With the rest of the tools, this video can be edited and
 encoded into mpeg1/2 or divx video.
 
 %package -n	%{libname}
-Summary:	Main library for for %{name}
+Summary:	Main library for %{name}
 Group:		System/Libraries
 Provides:	libmjpegtools = %version-%release
 Obsoletes:	libmjpegtools0 < %version-%release
