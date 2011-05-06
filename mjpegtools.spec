@@ -1,5 +1,3 @@
-%define _disable_ld_no_undefined 1
-
 %define name	mjpegtools
 %define version	1.9.0
 %define rel 10
@@ -20,6 +18,8 @@ Source: 	http://prdownloads.sourceforge.net/mjpeg/%{filename}.tar.gz
 Patch0:		mjpegtools-1.9.0-format-strings.patch
 Patch1: 	mjpegtools-1.9.0rc1-x86_64.patch
 Patch2: 	mjpegtools-1.9.0-jpeg-7.patch
+Patch3:		mjpegtools-1.9.0-disable-v4l.patch
+Patch4:		mjpegtools-1.9.0-link.patch
 Requires:	%{libname} = %{version}
 BuildRequires:  autoconf2.5
 BuildRequires:  gtk+2-devel
@@ -65,6 +65,8 @@ applications which will use %{name}.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p0
+%patch3 -p0
+%patch4 -p0
 
 libtoolize --copy --force
 autoreconf
@@ -72,14 +74,15 @@ autoreconf
 perl -p -i -e 's/\-\"toolame\"/\-\"mp2enc\"/g' scripts/lav2mpeg
 
 %build
-export CPPFLAGS="%{optflags} -fpermissive -pthread"
-export CFLAGS="%{optflags} -fpermissive -pthread"
+export CPPFLAGS="%{optflags} -fpermissive"
+export CFLAGS="%{optflags}"
+export PTHREAD_LIBS="-lpthread"
 # build i686/mmx dynamic library
 %ifarch %{ix86}
 mkdir build-i686
 pushd build-i686
-CONFIGURE_TOP=.. ../configure --enable-simd-accel \
-  --libdir=%_libdir
+CONFIGURE_TOP=.. %configure2_5x --enable-simd-accel \
+  --prefix=%_prefix --libdir=%_libdir --without-v4l
 make
 popd
 %endif
@@ -92,7 +95,7 @@ mkdir build-%{_target_cpu}
 
 pushd build-%{_target_cpu}
 CONFIGURE_TOP=.. %configure2_5x --disable-simd-accel \
-  --libdir=%_libdir
+  --libdir=%_libdir --without-v4l
 make
 popd
 
@@ -100,13 +103,13 @@ popd
 rm -rf %buildroot
 %ifarch %{ix86}
 pushd build-i686
-%makeinstall
+%makeinstall_std
 popd
 mkdir -p $RPM_BUILD_ROOT/%_libdir/sse2
 mv $RPM_BUILD_ROOT/%_libdir/*.so.* $RPM_BUILD_ROOT/%_libdir/sse2
 %endif
 pushd build-%{_target_cpu}
-%makeinstall
+%makeinstall_std
 popd
 cp mpeg2enc/mpeg2syntaxcodes.h %buildroot%_includedir/mjpegtools/
 
@@ -149,4 +152,3 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_libdir}/*.a
 %{_libdir}/*.so
 %attr(644,root,root) %{_libdir}/*.la
-
