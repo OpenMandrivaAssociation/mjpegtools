@@ -1,6 +1,6 @@
 %define name	mjpegtools
 %define version	2.0.0
-%define rel 2
+%define rel 3
 %define release %mkrel %rel
 %define api	2.0
 %define major 0
@@ -54,7 +54,7 @@ Group:		Development/C
 Requires:	%{libname} = %{version}
 Provides:	lib%{name}-devel = %version-%release
 Obsoletes:	libmjpegtools0-devel < %version-%release
-Obsoletes:	%{mklibname %name 1.9_ 0}-devel
+Obsoletes:	%{mklibname %name 1.9 0}-devel < %version-%release
 
 %description -n	%{develname}
 This package contains the headers that programmers will need to develop
