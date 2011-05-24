@@ -1,10 +1,11 @@
 %define name	mjpegtools
 %define version	2.0.0
-%define rel 1
+%define rel 2
 %define release %mkrel %rel
 %define api	2.0
 %define major 0
 %define libname %mklibname %name%{api}_ %major
+%define develname %mklibname -d %name
 %define filename %name-%version
 
 Name:		%{name}
@@ -47,14 +48,15 @@ Obsoletes:	libmjpegtools0 < %version-%release
 This package contains the library needed to run programs dynamically
 linked with %{name}.
 
-%package -n	%{libname}-devel
+%package -n	%{develname}
 Summary:	Headers for developing programs that will use %{name}
 Group:		Development/C
 Requires:	%{libname} = %{version}
 Provides:	lib%{name}-devel = %version-%release
 Obsoletes:	libmjpegtools0-devel < %version-%release
+Obsoletes:	%{mklibname %name 1.9_ 0}-devel
 
-%description -n	%{libname}-devel
+%description -n	%{develname}
 This package contains the headers that programmers will need to develop
 applications which will use %{name}.
 
@@ -140,7 +142,7 @@ rm -rf ${RPM_BUILD_ROOT}
 %{_libdir}/sse2/lib*-%api.so.%{major}*
 %endif
 
-%files -n %{libname}-devel
+%files -n %{develname}
 %defattr(-,root,root)
 %_mandir/man5/yuv4mpeg.5*
 %{_includedir}/mjpegtools
