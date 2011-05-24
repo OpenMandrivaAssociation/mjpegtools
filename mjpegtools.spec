@@ -1,8 +1,8 @@
 %define name	mjpegtools
-%define version	1.9.0
-%define rel 10
+%define version	2.0.0
+%define rel 1
 %define release %mkrel %rel
-%define api	1.9
+%define api	2.0
 %define major 0
 %define libname %mklibname %name%{api}_ %major
 %define filename %name-%version
@@ -11,14 +11,12 @@ Name:		%{name}
 Version:	%{version}
 Release:	%{release}
 Summary:	Tools for recording, editing, playing back and mpeg-encoding video under linux
-License:	GPL
+License:	GPLv2+
 Url:		http://mjpeg.sourceforge.net
 Group:		Video
 Source: 	http://prdownloads.sourceforge.net/mjpeg/%{filename}.tar.gz
-Patch0:		mjpegtools-1.9.0-format-strings.patch
+Patch0:		mjpegtools-2.0.0-format-strings.patch
 Patch1: 	mjpegtools-1.9.0rc1-x86_64.patch
-Patch2: 	mjpegtools-1.9.0-jpeg-7.patch
-Patch3:		mjpegtools-1.9.0-disable-v4l.patch
 Patch4:		mjpegtools-1.9.0-link.patch
 Requires:	%{libname} = %{version}
 BuildRequires:  autoconf2.5
@@ -62,10 +60,8 @@ applications which will use %{name}.
 
 %prep
 %setup -q -n %filename
-%patch0 -p1
+%patch0 -p1 -b .format-strings
 %patch1 -p1
-%patch2 -p0
-%patch3 -p0
 %patch4 -p0
 
 libtoolize --copy --force
