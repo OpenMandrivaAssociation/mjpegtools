@@ -1,6 +1,6 @@
 %define name	mjpegtools
 %define version	2.0.0
-%define rel 3
+%define rel 4
 %define release %mkrel %rel
 %define api	2.0
 %define major 0
