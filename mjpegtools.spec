@@ -103,8 +103,8 @@ rm -rf %buildroot
 pushd build-i686
 %makeinstall_std
 popd
-mkdir -p $RPM_BUILD_ROOT/%_libdir/sse2
-mv $RPM_BUILD_ROOT/%_libdir/*.so.* $RPM_BUILD_ROOT/%_libdir/sse2
+mkdir -p %{buildroot}/%_libdir/sse2
+mv %{buildroot}/%_libdir/*.so.* %{buildroot}/%_libdir/sse2
 %endif
 pushd build-%{_target_cpu}
 %makeinstall_std
@@ -126,7 +126,7 @@ cp mpeg2enc/mpeg2syntaxcodes.h %buildroot%_includedir/mjpegtools/
 %endif
 
 %clean
-rm -rf ${RPM_BUILD_ROOT}
+rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
