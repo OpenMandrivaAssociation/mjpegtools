@@ -1,7 +1,6 @@
 %define name	mjpegtools
 %define version	2.0.0
-%define rel 4
-%define release %mkrel %rel
+%define release %mkrel 5
 %define api	2.0
 %define major 0
 %define libname %mklibname %name%{api}_ %major
@@ -110,6 +109,7 @@ pushd build-%{_target_cpu}
 %makeinstall_std
 popd
 cp mpeg2enc/mpeg2syntaxcodes.h %buildroot%_includedir/mjpegtools/
+rm -f %buildroot%_libdir/*.la
 
 %post
 %_install_info mjpeg-howto.info
@@ -117,13 +117,6 @@ cp mpeg2enc/mpeg2syntaxcodes.h %buildroot%_includedir/mjpegtools/
 %postun
 %_remove_install_info mjpeg-howto.info
 
-
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig 
-%endif
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
 
 %clean
 rm -rf %{buildroot}
@@ -149,4 +142,3 @@ rm -rf %{buildroot}
 %{_libdir}/pkgconfig/*.pc
 %{_libdir}/*.a
 %{_libdir}/*.so
-%attr(644,root,root) %{_libdir}/*.la
