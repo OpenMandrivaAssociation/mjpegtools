@@ -5,8 +5,8 @@
 
 Summary:	Tools for recording, editing, playing back and mpeg-encoding video under linux
 Name:		mjpegtools
-Version:	2.0.0
-Release:	13
+Version:	2.1.0
+Release:	1
 License:	GPLv2+
 Group:		Video
 Url:		http://mjpeg.sourceforge.net
@@ -67,14 +67,14 @@ export PTHREAD_LIBS="-lpthread"
 %ifarch %{ix86}
 mkdir build-i686
 pushd build-i686
-CONFIGURE_TOP=.. %configure2_5x \
+CONFIGURE_TOP=.. %configure \
 	--enable-simd-accel \
 	--prefix=%{_prefix} \
 	--libdir=%{_libdir} \
 	--without-v4l \
 	--disable-static
 
-make
+%make
 popd
 %endif
 
@@ -85,13 +85,13 @@ mkdir build-%{_target_cpu}
 %endif
 
 pushd build-%{_target_cpu}
-CONFIGURE_TOP=.. %configure2_5x \
+CONFIGURE_TOP=.. %configure \
 	--disable-simd-accel \
 	--libdir=%{_libdir} \
 	--without-v4l \
 	--disable-static
 
-make
+%make
 popd
 
 %install
@@ -126,4 +126,3 @@ cp mpeg2enc/mpeg2syntaxcodes.h %{buildroot}%{_includedir}/mjpegtools/
 %{_includedir}/mjpegtools
 %{_libdir}/pkgconfig/*.pc
 %{_libdir}/*.so
-

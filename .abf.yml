@@ -1,2 +1,4 @@
+removed_sources:
+  mjpegtools-2.0.0.tar.gz: f411e8573d446711dbe8455a6ae9257e1afe1e70
 sources:
-  "mjpegtools-2.0.0.tar.gz": f411e8573d446711dbe8455a6ae9257e1afe1e70
+  mjpegtools-2.1.0.tar.gz: b9effa86280e23d67369e842e5cb645948583097
