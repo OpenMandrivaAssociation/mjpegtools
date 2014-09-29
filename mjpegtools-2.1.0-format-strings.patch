@@ -31,17 +31,6 @@
        imgfd = fopen(imgfname,"wb");
        if (imgfd==0) system_error("opening image file","fopen");
        res = fwrite(vbuff,nv,1,imgfd);
---- mjpegtools-2.0.0/mplex/main.cpp.format-strings	2010-03-13 14:05:07.000000000 +0100
-+++ mjpegtools-2.0.0/mplex/main.cpp	2011-05-24 11:16:32.000000000 +0200
-@@ -615,7 +615,7 @@ bool CmdLineMultiplexJob::ParseWorkaroun
-                     message += sep;
-             }
-             while( flag_table[flag].longname != 0 );
--            mjpeg_error( message.c_str() );
-+            mjpeg_error( "%s", message.c_str() );
-             return false;
-         }
- 
 --- mjpegtools-2.0.0/yuvfilters/yuvfilters.h.format-strings	2005-02-27 23:46:56.000000000 +0100
 +++ mjpegtools-2.0.0/yuvfilters/yuvfilters.h	2011-05-24 11:16:32.000000000 +0200
 @@ -35,7 +35,7 @@ extern "C" {
@@ -64,3 +53,14 @@
  #else
        fputs(buf, stderr);
  #endif
+--- mjpegtools-2.1.0/mplex/main.cpp.orig	2014-09-29 10:57:39.034841147 +0100
++++ mjpegtools-2.1.0/mplex/main.cpp	2014-09-29 10:57:48.434840455 +0100
+@@ -614,7 +614,7 @@
+                 if( flag_table[flag].longname != 0 )
+                     message += sep;
+             }
+-            mjpeg_error( message.c_str() );
++            mjpeg_error("%s", message.c_str() );
+             return false;
+         }
+ 

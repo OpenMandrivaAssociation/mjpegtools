@@ -1,4 +1,4 @@
-%define api 2.0
+%define api 2.1
 %define major 0
 %define libname %mklibname %{name} %{api} %{major}
 %define devname %mklibname -d %{name}
@@ -11,7 +11,7 @@ License:	GPLv2+
 Group:		Video
 Url:		http://mjpeg.sourceforge.net
 Source0: 	http://prdownloads.sourceforge.net/mjpeg/%{name}-%{version}.tar.gz
-#Patch0:		mjpegtools-2.0.0-format-strings.patch
+Patch0:		mjpegtools-2.1.0-format-strings.patch
 Patch1: 	mjpegtools-1.9.0rc1-x86_64.patch
 Patch4:		mjpegtools-1.9.0-link.patch
 BuildRequires:	nasm
@@ -79,7 +79,7 @@ popd
 %endif
 
 # build regular package
-%if %{_target_cpu} == "i686"
+%if "%{_target_cpu}" == "i686"
 %else
 mkdir build-%{_target_cpu}
 %endif
