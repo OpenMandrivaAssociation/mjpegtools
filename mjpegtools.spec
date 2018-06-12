@@ -6,7 +6,7 @@
 Summary:	Tools for recording, editing, playing back and mpeg-encoding video under linux
 Name:		mjpegtools
 Version:	2.1.0
-Release:	3
+Release:	4
 License:	GPLv2+
 Group:		Video
 Url:		http://mjpeg.sourceforge.net
@@ -17,7 +17,7 @@ Patch4:		mjpegtools-1.9.0-link.patch
 BuildRequires:	nasm
 BuildRequires:	jpeg-devel
 BuildRequires:	pkgconfig(gtk+-2.0)
-Buildrequires:	pkgconfig(libdv)
+BuildRequires:	pkgconfig(libdv)
 BuildRequires:	pkgconfig(libpulse)
 BuildRequires:	pkgconfig(libquicktime)
 BuildRequires:	pkgconfig(SDL_gfx)
