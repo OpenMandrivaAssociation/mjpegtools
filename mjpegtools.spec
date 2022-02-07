@@ -11,9 +11,9 @@ License:	GPLv2+
 Group:		Video
 Url:		http://mjpeg.sourceforge.net
 Source0: 	http://prdownloads.sourceforge.net/mjpeg/%{name}-%{version}.tar.gz
-Patch0:		mjpegtools-2.1.0-format-strings.patch
-Patch1: 	mjpegtools-1.9.0rc1-x86_64.patch
-Patch4:		mjpegtools-1.9.0-link.patch
+#Patch0:		mjpegtools-2.1.0-format-strings.patch
+#Patch1: 	mjpegtools-1.9.0rc1-x86_64.patch
+#Patch4:		mjpegtools-1.9.0-link.patch
 BuildRequires:	nasm
 BuildRequires:	jpeg-devel
 BuildRequires:	pkgconfig(gtk+-2.0)
