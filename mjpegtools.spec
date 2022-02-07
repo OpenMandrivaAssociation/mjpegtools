@@ -1,19 +1,17 @@
-%define api 2.1
+%define api 2.2
 %define major 0
 %define libname %mklibname %{name} %{api} %{major}
 %define devname %mklibname -d %{name}
 
 Summary:	Tools for recording, editing, playing back and mpeg-encoding video under linux
 Name:		mjpegtools
-Version:	2.1.0
-Release:	6
+Version:	2.2.1
+Release:	1
 License:	GPLv2+
 Group:		Video
 Url:		http://mjpeg.sourceforge.net
 Source0: 	http://prdownloads.sourceforge.net/mjpeg/%{name}-%{version}.tar.gz
-Patch0:		mjpegtools-2.1.0-format-strings.patch
-Patch1: 	mjpegtools-1.9.0rc1-x86_64.patch
-Patch4:		mjpegtools-1.9.0-link.patch
+
 BuildRequires:	nasm
 BuildRequires:	jpeg-devel
 BuildRequires:	pkgconfig(gtk+-2.0)
@@ -74,7 +72,7 @@ CONFIGURE_TOP=.. %configure \
 	--without-v4l \
 	--disable-static
 
-%make
+%make_build
 popd
 %endif
 
@@ -91,20 +89,20 @@ CONFIGURE_TOP=.. %configure \
 	--without-v4l \
 	--disable-static
 
-%make
+%make_build
 popd
 
 %install
 %ifarch %{ix86}
 pushd build-i686
-%makeinstall_std
+%make_install
 popd
 mkdir -p %{buildroot}%{_libdir}/sse2
 mv %{buildroot}%{_libdir}/*.so.* %{buildroot}%{_libdir}/sse2/
 %endif
 
 pushd build-%{_target_cpu}
-%makeinstall_std
+%make_install
 popd
 
 cp mpeg2enc/mpeg2syntaxcodes.h %{buildroot}%{_includedir}/mjpegtools/
