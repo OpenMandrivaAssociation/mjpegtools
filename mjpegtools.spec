@@ -5,8 +5,8 @@
 
 Summary:	Tools for recording, editing, playing back and mpeg-encoding video under linux
 Name:		mjpegtools
-Version:	2.1.0
-Release:	6
+Version:	2.2.1
+Release:	1
 License:	GPLv2+
 Group:		Video
 Url:		http://mjpeg.sourceforge.net
