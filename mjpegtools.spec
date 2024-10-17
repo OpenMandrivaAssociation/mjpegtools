@@ -9,7 +9,7 @@ Version:	2.2.1
 Release:	3
 License:	GPLv2+
 Group:		Video
-Url:		http://mjpeg.sourceforge.net
+Url:		https://mjpeg.sourceforge.net
 Source0: 	http://prdownloads.sourceforge.net/mjpeg/%{name}-%{version}.tar.gz
 
 BuildRequires:	nasm
