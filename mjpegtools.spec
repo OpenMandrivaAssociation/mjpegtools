@@ -12,6 +12,7 @@ Group:		Video
 Url:		https://mjpeg.sourceforge.net
 Source0: 	http://prdownloads.sourceforge.net/mjpeg/%{name}-%{version}.tar.gz
 
+BuildRequires:	make
 BuildRequires:	nasm
 BuildRequires:	jpeg-devel
 BuildRequires:	pkgconfig(gtk+-2.0)
